@@ -10,8 +10,26 @@ Python **3.12+**, géré avec [`uv`](https://docs.astral.sh/uv/).
 git clone https://github.com/asarfa/YfDataExtract.git
 cd YfDataExtract
 uv sync                      # crée .venv en Python 3.12 et installe les dépendances
-uv sync --extra xlsx         # optionnel : export Excel
 ```
+
+## Interface (Streamlit)
+
+```bash
+uv run yfdx-app              # ouvre http://localhost:8501
+```
+
+| Page | Contenu |
+|---|---|
+| Fiche ticker | Cours, plus haut/bas, chandeliers + volume ; extraction de tous les datasets par catégorie (onglets), téléchargement CSV par table ou zip complet (csv / parquet / json / xlsx) |
+| Comparer des prix | Plusieurs tickers en base 100, en prix ou en drawdown (échelle log en option) ; perf, perf annualisée, vol, Sharpe, max drawdown |
+| Options | Choix de l'échéance, smile de volatilité implicite calls/puts, chaînes complètes |
+| Recherche | Recherche plein texte + lookup par type d'actif (action, ETF, OPCVM, indice, future, devise, crypto) |
+| Screeners | Les 19 screeners prédéfinis de Yahoo |
+| Marchés & secteurs | Statut et indices d'une place ; secteurs, puis industries de chaque secteur |
+| Calendriers | Résultats, événements économiques, IPO, splits sur une période |
+| Catalogue | Liste des 50 datasets disponibles par ticker |
+
+Les appels Yahoo sont mis en cache 15 min (bouton « Vider le cache » dans la barre latérale).
 
 ## Ce qu'on peut extraire
 
@@ -59,7 +77,7 @@ q = EquityQuery("and", [EquityQuery("eq", ["region", "fr"]), EquityQuery("gt", [
 yfx.screen(q, size=100)
 ```
 
-## Ligne de commande
+## Ligne de commande (optionnelle, pour scripts / automatisation)
 
 ```bash
 uv run yfdx datasets
@@ -80,7 +98,7 @@ uv run yfdx calendar --start 2026-11-01 --end 2026-11-30
 ## Tests
 
 ```bash
-uv run pytest        # hors ligne : yfinance est simulé
+uv run pytest        # hors ligne : yfinance est simulé (librairie + toutes les pages de l'interface)
 ```
 
 ## Limites

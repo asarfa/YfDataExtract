@@ -9,16 +9,17 @@ authors = [
 requires-python = ">=3.12"
 classifiers = ["Programming Language :: Python :: 3.12"]
 dependencies = [
+    "openpyxl>=3.1.5",
     "pandas>=3.1.0",
+    "plotly>=7.1.0",
     "pyarrow>=26.0.0",
+    "streamlit>=1.66.1",
     "yfinance>=1.7.0",
 ]
 
-[project.optional-dependencies]
-xlsx = ["openpyxl>=3.1"]
-
 [project.scripts]
 yfdx = "yfdataextract.cli:main"
+yfdx-app = "yfdataextract.app_launcher:main"
 
 [build-system]
 requires = ["uv_build>=0.11.32,<0.12.0"]
