@@ -1,0 +1,11 @@
+data/
+output/
+*.parquet
+*.xlsx
+.pytest_cache/
+__pycache__/
+*.py[oc]
+.venv/
+build/
+dist/
+*.egg-info
